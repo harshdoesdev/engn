@@ -1,0 +1,1 @@
+export const game = (init, update, render) => {};

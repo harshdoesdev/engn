@@ -1,0 +1,23 @@
+{
+  "name": "engn",
+  "version": "0.0.1",
+  "description": "Tiny Javascript Game Engine",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theharshsingh/engn.git"
+  },
+  "keywords": [
+    "game",
+    "engine"
+  ],
+  "author": "Harsh Singh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theharshsingh/engn/issues"
+  },
+  "homepage": "https://github.com/theharshsingh/engn#readme"
+}
