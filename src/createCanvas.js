@@ -4,7 +4,7 @@ export const createCanvas = (width, height, background) => {
     canvas.width = width ?? window.innerWidth;
     canvas.height = height ?? window.innerHeight;
 
-    if(bg) {
+    if(background) {
         canvas.style.background = background;
     }
 

@@ -1,3 +1,5 @@
+/** @module Emitter */
+
 export default class Emitter {
 
     #subscriptions = new Map()
