@@ -11,4 +11,6 @@ export const game = (init, update, render) => {
     ticker.on('init', init);
 
     ticker.on('tick', loop);
+
+    ticker.run();
 };

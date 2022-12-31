@@ -4,7 +4,8 @@
   "description": "Tiny Javascript Game Engine",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "watch": "rollup -cw"
   },
   "repository": {
     "type": "git",
