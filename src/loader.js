@@ -8,16 +8,13 @@ const ASSET_TYPE = {
 
 export const img = (name, src) => {
     return new Promise((resolve, reject) => {
-        fetch(src)
-            .then(res => res.blob())
-            .then(blob => {
-                const image = new Image();
+        const image = new Image();
 
-                image.onload = () => resolve({ type: ASSET_TYPE.IMAGE, name, value: image });
+        image.onload = () => resolve({ type: ASSET_TYPE.IMAGE, name, value: image });
 
-                image.src = URL.createObjectURL(blob);
-            })
-            .catch(() => reject(`Could not load image: ${name}`));
+        image.reject = () => reject(`Could not load image: ${name}`);
+
+        image.src = src;
     });
 };
 
@@ -49,7 +46,9 @@ export const json = async (name, src) => {
 };
 
 const reduceAssets = (assets, { type, name, value }) => {
-    assets[type] ??= {};
+    if(!assets[type]) {
+        assets[type] = {};
+    }
 
     assets[type][name] = value;
 

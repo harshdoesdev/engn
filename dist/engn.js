@@ -130,12 +130,15 @@ const game = (init, update, render) => {
 };
 
 let _audioContext = null;
+let _soundMixer = null;
 
 const getAudioCtx = () => {
-    return _audioContext ??= new AudioContext();
-};
+    if(!_audioContext) {
+        _audioContext = new AudioContext();
+    }
 
-let _soundMixer = null;
+    return _audioContext;
+};
 
 const getSoundMixer = () => {
     if(!_soundMixer) {
@@ -192,16 +195,13 @@ const ASSET_TYPE = {
 
 const img = (name, src) => {
     return new Promise((resolve, reject) => {
-        fetch(src)
-            .then(res => res.blob())
-            .then(blob => {
-                const image = new Image();
+        const image = new Image();
 
-                image.onload = () => resolve({ type: ASSET_TYPE.IMAGE, name, value: image });
+        image.onload = () => resolve({ type: ASSET_TYPE.IMAGE, name, value: image });
 
-                image.src = URL.createObjectURL(blob);
-            })
-            .catch(() => reject(`Could not load image: ${name}`));
+        image.reject = () => reject(`Could not load image: ${name}`);
+
+        image.src = src;
     });
 };
 
@@ -233,7 +233,9 @@ const json = async (name, src) => {
 };
 
 const reduceAssets = (assets, { type, name, value }) => {
-    assets[type] ??= {};
+    if(!assets[type]) {
+        assets[type] = {};
+    }
 
     assets[type][name] = value;
 

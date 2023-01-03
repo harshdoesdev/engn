@@ -1,10 +1,13 @@
 let _audioContext = null;
+let _soundMixer = null;
 
 export const getAudioCtx = () => {
-    return _audioContext ??= new AudioContext();
-};
+    if(!_audioContext) {
+        _audioContext = new AudioContext();
+    }
 
-let _soundMixer = null;
+    return _audioContext;
+};
 
 const getSoundMixer = () => {
     if(!_soundMixer) {
